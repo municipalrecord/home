@@ -1,6 +1,6 @@
 ---
 name: town-onboarding
-description: Stand up a new municipal- or legislative-record site from a government portal, end to end, and feed what you learn back into the playbook for the next town. Use this when adding a new city, town, or chamber to a record project; surveying an unfamiliar agenda portal (IQM2/Granicus, PrimeGov, Legistar, CivicClerk, or a bespoke one); deciding whether a new site is ready to publish; or writing up what an onboarding taught you. Use it at the very start — the first thing it does is read the accumulated ledger of what previous towns cost, and the expensive mistakes are all made in the first hour. Also use it when a site is already built and the question is whether to launch, because the decision to stand down is part of this workflow, not a failure of it.
+description: Stand up a new municipal- or legislative-record site from a government portal, end to end, and feed what you learn back into the playbook for the next town. Use this when adding a new city, town, or chamber to a record project; surveying an unfamiliar agenda portal (IQM2/Granicus, PrimeGov, Legistar, CivicClerk, or a bespoke one); deciding whether a new site is ready to publish; or writing up what an onboarding taught you. Use it at the very start of the thread, because it opens with Dan's triage turn — goal, tier, model, project, walls — and then stops and waits for him to set the model and say go, before any ledger read or portal survey happens. Also use it when a site is already built and the question is whether to launch, because the decision to stand down is part of this workflow, not a failure of it.
 ---
 
 # Onboarding a new town
@@ -24,10 +24,64 @@ every line is traceable, or an honest placeholder.** Both are successes. A
 published site with unchecked pages is the only failure, and it is the
 failure that is easiest to reach by working hard.
 
-## Before anything: read the ledger
+## Turn 0 — Triage, then stop
+
+Onboarding a town opens a thread, so this skill opens the way every thread
+opens: with the triage turn, and then a stop. Two skills that both want to go
+first would race, and the loser never runs — so the triage lives here, at the
+top of the work it is meant to gate.
+
+**Do the triage, then stop and wait.** Do not read the ledger, survey a
+portal, open a survey file or write anything until Dan has set the model by
+hand and said go. Do not pick a model yourself.
+
+**First re-read `~/.claude/CLAUDE.md`** — the Projects and Walls sections — so
+the project list is current rather than remembered. A cloud session has its
+own filesystem and will not have that file; if it is absent, say so in one
+line and answer 1–3 only. The project and the walls come from that file, and
+a guess at either is worse than an open question.
+
+Then, in a few short lines — no tables:
+
+1. **The goal of the thread**, stated as an outcome, not his request repeated
+   back: "Medford's record online with every line traceable", not "you asked
+   about adding Medford". Number them if there is more than one, most
+   important first. If the goal is unclear, say what you think it is and mark
+   it a guess so Dan can correct it before any work starts. On a mid-thread
+   re-run, say whether the goal has moved.
+2. **The tier** the work belongs in — Haiku for mechanical bulk, Sonnet for
+   routine build-and-check, Fable for new methods, contested data, design, and
+   reader-facing writing. Cheaper wins ties. Most onboarding work is Fable
+   tier: an unfamiliar portal is a new method and the pages are reader-facing.
+   The exception is a re-crawl of a portal already surveyed, which is Sonnet.
+   Say which of the two this is rather than reaching for Fable by default.
+3. **The model this session is actually on**, and whether it matches the tier
+   or should switch. Read it rather than assuming: `get_session` with the
+   session id omitted describes this session, and gives both
+   `session_context.model` (what it is set to) and
+   `external_metadata.last_served_model` (what actually served the last turn —
+   these differ after a fallback). Name the mismatch if there is one.
+4. **The project and its folder**, by the "pick the project first" method in
+   CLAUDE.md. If two match, prefer the one whose folder holds the files in
+   play. If nothing matches, say `~/Claude` and say so in one line.
+5. **Any wall** this work touches, one line each — from the Walls section of
+   CLAUDE.md as it reads today, not from memory, and only the ones that
+   actually apply. They are listed there and deliberately not repeated here:
+   this file is committed to a public repository, and a list of someone's
+   confidentiality boundaries is not something to publish.
+
+One thing this work raises often enough to flag: a record site republishes a
+real government's documents, under the names of real residents and officials
+who did not choose to be indexed. Whichever of the walls covers that is a
+live question at Stage 0, not at launch — the survey's "what we will not
+publish" section is where it gets answered.
+
+Then stop.
+
+## After the go: read the ledger
 
 Previous towns have already paid for lessons you are about to re-buy. The
-first action of any onboarding, before surveying a portal or writing a line
+first action once Dan says go, before surveying a portal or writing a line
 of code:
 
 ```bash
@@ -207,6 +261,10 @@ judgment is the recursion; the file is only its memory.
 
 ## Anti-patterns
 
+- Doing the triage and then carrying straight on into the work. The stop is
+  the point: Dan sets the model, and a Fable-tier survey done on Sonnet
+  because nobody paused is the expensive kind of cheap.
+- Answering the project or the walls from memory when CLAUDE.md wasn't read.
 - Starting the crawler before writing down what the town is.
 - Assuming one vendor because one portal is visible.
 - Deriving before archiving, or planning to add hashes later.
