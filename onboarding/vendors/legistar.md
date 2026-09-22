@@ -14,10 +14,5 @@ Entries are kept even when they contradict each other — a vendor behaving diff
 
 ### `3bf3c71c` · somerville · legistar · gate · **near-miss** · 2026-09-22
 
-**Symptom** — check_legistar_meeting and check_legifile strip tags and then substring-match, so a body or title containing an HTML entity mismatches on every run.
-
-**Cause** — external_link_audit.py imports no html module at all, while semantic_link_audit.py does unescape; the two halves drifted apart.
-
-**Fix** — Unescape entities before comparing, in both halves, and add a body name containing an ampersand to the audit's own fixtures.
-
-**The check that catches it** — A fixture whose body name is 'Finance & Administration' must verify ok; it currently reports mismatch.
+*Promoted into a check — lives at: audit/external_link_audit.py page_text(); fixed 2026-09-22 in cambridge-record f97ea13b5*  
+<sub>check_legistar_meeting and check_legifile strip tags and then substring-match, so a body or title containing an HTML entity mismatches on every run.</sub>
